@@ -1,0 +1,630 @@
+/* =========================
+   SMARTCART MAIN STYLE
+   ========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+header {
+    background: #063b73;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 75px;
+}
+
+header strong {
+    font-size: 24px;
+    letter-spacing: 0.5px;
+}
+
+header small {
+    display: block;
+    font-size: 12px;
+    opacity: 0.85;
+    margin-left: 32px;
+}
+
+header nav {
+    display: flex;
+    gap: 25px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+header nav a:hover {
+    opacity: 0.75;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+
+/* =========================
+   HERO SECTION
+   ========================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #063b73,
+        #0d579d
+    );
+
+    color: white;
+
+    border-radius: 22px;
+
+    padding: 45px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 50, 100, 0.15);
+}
+
+.hero small {
+    letter-spacing: 2px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin: 8px 0;
+}
+
+.hero p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.hero a {
+    background: white;
+    color: #063b73;
+
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.hero a:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   BUDGET ALERT
+   ========================= */
+
+.budget-alert {
+    padding: 17px 22px;
+
+    border-radius: 13px;
+
+    margin: 20px 0;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.05);
+}
+
+.budget-safe {
+    background: #e9f8ef;
+    color: #18723b;
+    border-left: 6px solid #22a653;
+}
+
+.budget-warning {
+    background: #fff5d8;
+    color: #8a6100;
+    border-left: 6px solid #f0ad00;
+}
+
+.budget-danger {
+    background: #ffe6e6;
+    color: #a51e1e;
+    border-left: 6px solid #e53935;
+}
+
+
+/* =========================
+   CARDS
+   ========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin: 20px 0;
+}
+
+.card {
+    background: white;
+
+    border-radius: 17px;
+
+    padding: 25px;
+
+    min-height: 150px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    border: 1px solid #edf0f5;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.09);
+}
+
+.card h2 {
+    font-size: 27px;
+
+    margin: 8px 0 2px;
+
+    color: #172033;
+}
+
+.card h3 {
+    margin: 8px 0;
+    color: #172033;
+}
+
+.card p {
+    color: #687386;
+
+    font-size: 14px;
+}
+
+.emoji {
+    font-size: 27px;
+}
+
+
+/* =========================
+   BUDGET BOX
+   ========================= */
+
+.budget-box {
+    background: white;
+
+    border-radius: 17px;
+
+    padding: 25px;
+
+    margin-top: 25px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+}
+
+.budget-box h2 {
+    margin-bottom: 8px;
+}
+
+.progress-container {
+    width: 100%;
+
+    height: 13px;
+
+    background: #e7ebf0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin: 15px 0 8px;
+}
+
+.progress-bar {
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #20a957,
+        #3fcf76
+    );
+
+    border-radius: 20px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.dashboard-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+}
+
+.dashboard-buttons a {
+    background: #063b73;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.dashboard-buttons a:hover {
+    background: #0d579d;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   PRODUCT GRID
+   ========================= */
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+
+    margin-top: 25px;
+}
+
+.product-card {
+    background: white;
+
+    border-radius: 17px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+
+    border: 1px solid #edf0f5;
+}
+
+.product-card h3 {
+    margin: 10px 0 5px;
+}
+
+.product-card p {
+    color: #687386;
+}
+
+.product-card button,
+button {
+    background: #063b73;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 17px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.product-card button:hover,
+button:hover {
+    background: #0d579d;
+}
+
+
+/* =========================
+   SEARCH
+   ========================= */
+
+.search-box {
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.05);
+
+    margin: 20px 0;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d9dee7;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: white;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.05);
+}
+
+th {
+    background: #063b73;
+
+    color: white;
+
+    padding: 14px;
+
+    text-align: left;
+}
+
+td {
+    padding: 14px;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+
+/* =========================
+   STORE MAP
+   ========================= */
+
+.store-layout {
+    display: grid;
+
+    grid-template-columns:
+        1.3fr 1fr;
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+.store-card,
+.locator-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+}
+
+.aisle {
+    background: #f6f8fb;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 12px;
+}
+
+.entrance {
+    background: #063b73;
+
+    color: white;
+
+    padding: 17px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    font-weight: bold;
+}
+
+.checkout {
+    background: #20a957;
+
+    color: white;
+
+    padding: 17px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    margin-top: 20px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   ANALYTICS
+   ========================= */
+
+.analytics-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+    margin: 25px 0;
+}
+
+.analytics-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.06);
+}
+
+.analytics-card h2 {
+    color: #063b73;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .analytics-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .product-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .store-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        align-items: flex-start;
+    }
+
+    header nav {
+        gap: 15px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .hero {
+        padding: 28px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .cards,
+    .analytics-grid,
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-buttons {
+        flex-direction: column;
+    }
+
+    .dashboard-buttons a {
+        text-align: center;
+    }
+}

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Smart Recommendations</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header class="header"><a class="brand" href="/">🛒 <span>SmartCart</span><small>Intelligent Shopping Assistant</small></a><nav><a href="/products">Products</a><a href="/cart">Cart</a></nav></header>
+<main class="container">
+<div class="page-head"><div><span class="eyebrow">INTELLIGENT ASSISTANCE</span><h1>Smart Recommendations</h1><p>Suggestions based on the products in your cart.</p></div></div>
+<div class="notice">🤖 <b>Smart insight:</b> These suggestions are generated from product relationships and shopping patterns.</div>
+<section class="product-grid">
+{% for p in recommendations %}
+<article class="product-card"><div class="product-icon">{{ p.emoji }}</div><span class="pill">Recommended</span><h3>{{ p.name }}</h3><p>{{ p.category }} · 📍 {{ p.location }}</p><div class="product-bottom"><b>₹{{ p.price }}</b><a class="add-button" href="/add/{{ p.id }}">+ Add</a></div></article>
+{% endfor %}
+</section>
+<a class="secondary inline" href="/cart">← Back to Cart</a>
+</main></body></html>

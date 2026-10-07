@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Cart | SmartCart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <strong>🛒 SmartCart</strong>
+        <small>Your Intelligent Shopping Assistant</small>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="{{ url_for('cart') }}">Cart</a>
+    </nav>
+</header>
+
+
+<main class="container">
+
+    <div style="margin-bottom: 25px;">
+        <small style="letter-spacing: 2px; font-weight: bold;">
+            SMART CART
+        </small>
+
+        <h1 style="font-size: 40px; margin: 5px 0;">
+            My Cart
+        </h1>
+
+        <p style="color:#687386;">
+            Your items and live total.
+        </p>
+
+        <a href="{{ url_for('products') }}"
+           style="color:#063b73; font-weight:bold;">
+            + Add Products
+        </a>
+    </div>
+
+
+    {% if items %}
+
+    <div class="store-layout">
+
+        <!-- CART ITEMS -->
+        <section>
+
+            {% for item in items %}
+
+            <div class="card"
+                 style="display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:15px;">
+
+                <div style="display:flex;
+                            align-items:center;
+                            gap:18px;">
+
+                    <div style="font-size:38px;">
+                        {{ item.emoji }}
+                    </div>
+
+                    <div>
+                        <h3 style="margin:0;">
+                            {{ item.name }}
+                        </h3>
+
+                        <p>
+                            {{ item.category }} · Qty {{ item.qty }}
+                        </p>
+
+                        <strong>
+                            ₹{{ item.line_total }}
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div>
+                    <a href="{{ url_for('remove_from_cart',
+                                       product_id=item.id) }}"
+                       style="
+                       display:inline-block;
+                       background:#ffe8e8;
+                       color:#b42323;
+                       padding:8px 13px;
+                       border-radius:8px;
+                       text-decoration:none;
+                       font-weight:bold;">
+                        −
+                    </a>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+
+        <!-- ORDER SUMMARY -->
+        <aside class="card"
+               style="height:max-content;">
+
+            <h2 style="margin-bottom:20px;">
+                Order Summary
+            </h2>
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                margin-bottom:12px;">
+                <span>Items</span>
+                <strong>{{ items|length }}</strong>
+            </div>
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                margin-bottom:18px;">
+                <span>Subtotal</span>
+                <strong>₹{{ total }}</strong>
+            </div>
+
+            <hr style="
+                border:none;
+                border-top:1px solid #e5e9ef;
+                margin:15px 0;">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                margin-bottom:8px;">
+                <span>Budget</span>
+                <strong>₹{{ budget }}</strong>
+            </div>
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                color:#20a957;
+                margin-bottom:20px;">
+                <span>Remaining</span>
+                <strong>₹{{ remaining }}</strong>
+            </div>
+
+
+            {% if remaining >= 0 %}
+
+            <div class="budget-alert budget-safe">
+                ✓ You are within your shopping budget.
+            </div>
+
+            {% else %}
+
+            <div class="budget-alert budget-danger">
+                ⚠ You have exceeded your shopping budget.
+            </div>
+
+            {% endif %}
+
+
+            <a href="{{ url_for('smart_recommendations') }}"
+               style="
+               display:block;
+               text-align:center;
+               background:#063b73;
+               color:white;
+               padding:13px;
+               border-radius:9px;
+               text-decoration:none;
+               font-weight:bold;
+               margin-top:15px;">
+                🤖 View Smart Suggestions
+            </a>
+
+
+            <a href="{{ url_for('checkout') }}"
+               style="
+               display:block;
+               text-align:center;
+               background:#20a957;
+               color:white;
+               padding:13px;
+               border-radius:9px;
+               text-decoration:none;
+               font-weight:bold;
+               margin-top:12px;">
+                ✓ Checkout
+            </a>
+
+        </aside>
+
+    </div>
+
+    {% else %}
+
+    <div class="card"
+         style="text-align:center; padding:60px;">
+
+        <div style="font-size:55px;">
+            🛒
+        </div>
+
+        <h2>Your cart is empty</h2>
+
+        <p>
+            Add some products to start shopping.
+        </p>
+
+        <a href="{{ url_for('products') }}"
+           style="
+           display:inline-block;
+           background:#063b73;
+           color:white;
+           padding:13px 22px;
+           border-radius:9px;
+           text-decoration:none;
+           font-weight:bold;
+           margin-top:15px;">
+            Find Products
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+</body>
+</html>

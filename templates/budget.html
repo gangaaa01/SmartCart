@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Budget Assistant</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header class="header"><a class="brand" href="/">🛒 <span>SmartCart</span><small>Intelligent Shopping Assistant</small></a><nav><a href="/">Dashboard</a><a href="/cart">Cart</a></nav></header>
+<main class="container">
+<div class="page-head"><div><span class="eyebrow">SMART BUDGET</span><h1>Budget Assistant</h1><p>Set a spending limit before you shop.</p></div></div>
+<div class="two-col">
+<section class="panel">
+<form method="post" class="budget-form"><label>Shopping budget (₹)</label><input type="number" name="budget" min="1" step="1" value="{{ budget }}" required><button class="primary" type="submit">Save Budget</button></form>
+<div class="budget-visual"><div class="budget-number">₹{{ "%.0f"|format(total) }} <small>/ ₹{{ "%.0f"|format(budget) }}</small></div><div class="progress"><div style="width:{{ [100, (total/budget*100) if budget else 0]|min }}%"></div></div><p>{% if remaining >= 0 %}You have <b>₹{{ "%.0f"|format(remaining) }}</b> left.{% else %}⚠️ You are <b>₹{{ "%.0f"|format(-remaining) }}</b> over budget.{% endif %}</p></div>
+</section>
+<aside class="insight"><span>💡</span><h2>Smart budgeting</h2><p>SmartCart continuously compares your cart total with your chosen budget and warns you before checkout.</p></aside>
+</div></main></body></html>

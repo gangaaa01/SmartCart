@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Store Map | SmartCart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .navbar {
+            background: #073b78;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 12px;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: 40px auto;
+        }
+
+        .heading {
+            margin-bottom: 25px;
+        }
+
+        .heading small {
+            color: #1677ff;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .heading h1 {
+            font-size: 38px;
+            margin: 8px 0;
+        }
+
+        .heading p {
+            color: #697386;
+            font-size: 17px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .entrance {
+            background: #073b78;
+            color: white;
+            padding: 17px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .aisles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .aisle {
+            border: 1px solid #e4e8ef;
+            border-radius: 14px;
+            padding: 18px;
+            min-height: 115px;
+            background: #fafcff;
+        }
+
+        .aisle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .aisle h3 {
+            margin-top: 0;
+            color: #073b78;
+            font-size: 15px;
+        }
+
+        .aisle p {
+            margin: 8px 0;
+            color: #4b5563;
+        }
+
+        .checkout {
+            display: block;
+            text-align: center;
+            background: #18b66a;
+            color: white;
+            text-decoration: none;
+            padding: 17px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .checkout:hover {
+            background: #119957;
+        }
+
+        .locator h2 {
+            margin-top: 0;
+        }
+
+        .locator-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 5px;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .product-name {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .aisle-number {
+            color: #073b78;
+            font-weight: bold;
+        }
+
+        @media (max-width: 800px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .aisles {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="brand">
+        🛒 SmartCart
+        <span>Intelligent Shopping Assistant</span>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="{{ url_for('cart') }}">
+            Cart
+        </a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <div class="heading">
+        <small>SMART NAVIGATION</small>
+
+        <h1>Store Map</h1>
+
+        <p>
+            Find products quickly using aisle information.
+        </p>
+    </div>
+
+
+    <div class="layout">
+
+        <!-- STORE MAP -->
+
+        <section class="card">
+
+            <div class="entrance">
+                🚪 ENTRANCE
+            </div>
+
+            <div class="aisles">
+
+                <div class="aisle">
+                    <h3>AISLE 1</h3>
+                    <p>🥛 Milk</p>
+                    <p>🧀 Cheese</p>
+                </div>
+
+                <div class="aisle">
+                    <h3>AISLE 2</h3>
+                    <p>🍞 Brown Bread</p>
+                </div>
+
+                <div class="aisle">
+                    <h3>AISLE 3</h3>
+                    <p>🍚 Basmati Rice</p>
+                    <p>🍝 Pasta</p>
+                    <p>🍅 Pasta Sauce</p>
+                </div>
+
+                <div class="aisle">
+                    <h3>AISLE 4</h3>
+                    <p>🍪 Oreo</p>
+                </div>
+
+                <div class="aisle">
+                    <h3>AISLE 5</h3>
+                    <p>🧴 Shampoo</p>
+                    <p>🧼 Bath Soap</p>
+                </div>
+
+                <div class="aisle">
+                    <h3>AISLE 6</h3>
+                    <p>🧃 Juice</p>
+                </div>
+
+            </div>
+
+            <a href="{{ url_for('checkout') }}" class="checkout">
+                🧾 BILLING / CHECKOUT →
+            </a>
+
+        </section>
+
+
+        <!-- PRODUCT LOCATOR -->
+
+        <section class="card locator">
+
+            <h2>📍 Product Locator</h2>
+
+            {% for product in products %}
+
+            <div class="locator-item">
+
+                <div class="product-name">
+                    <span>{{ product.emoji }}</span>
+                    <span>{{ product.name }}</span>
+                </div>
+
+                <span class="aisle-number">
+                    {{ product.location }}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+    </div>
+
+</main>
+
+</body>
+</html>

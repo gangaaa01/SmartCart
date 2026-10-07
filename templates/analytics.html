@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Shopping Analytics</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><header class="header"><a class="brand" href="/">🛒 <span>SmartCart</span><small>Intelligent Shopping Assistant</small></a><nav><a href="/products">Products</a><a href="/cart">Cart</a></nav></header>
+<main class="container">
+<div class="page-head"><div><span class="eyebrow">SHOPPING INSIGHTS</span><h1>Shopping Analytics</h1><p>Understand your spending and savings.</p></div></div>
+<section class="stats">
+<div class="stat"><span>💳</span><b>₹{{ "%.0f"|format(total_spent) }}</b><small>Total spent</small></div>
+<div class="stat"><span>💸</span><b>₹{{ "%.0f"|format(total_saved) }}</b><small>Total saved</small></div>
+<div class="stat"><span>🛍️</span><b>{{ total_items }}</b><small>Items purchased</small></div>
+<div class="stat"><span>🧾</span><b>{{ history|length }}</b><small>Orders</small></div>
+</section>
+<div class="two-col">
+<section class="panel"><h2>Category Spending</h2>{% if category_totals %}{% for cat, value in category_totals.items() %}<div class="bar-row"><div><span>{{ cat }}</span><b>₹{{ "%.0f"|format(value) }}</b></div><div class="bar"><span style="width:{{ [100, (value/total_spent*100) if total_spent else 0]|min }}%"></span></div></div>{% endfor %}{% else %}<p>No completed shopping data yet. Complete a checkout to see analytics.</p>{% endif %}</section>
+<section class="insight"><span>📈</span><h2>SmartCart Insight</h2><p>Your analytics dashboard summarizes completed purchases, category spending and discounts. This can be extended with monthly trends and personalized recommendations.</p></section>
+</div>
+</main></body></html>

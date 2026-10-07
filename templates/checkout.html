@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | SmartCart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <div>
+        <strong>🛒 SmartCart</strong>
+        <small>Your Intelligent Shopping Assistant</small>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="{{ url_for('cart') }}">Cart</a>
+    </nav>
+</header>
+
+
+<main class="container">
+
+    {% if completed %}
+
+        <div class="card"
+             style="text-align:center; padding:55px; margin-top:30px;">
+
+            <div style="font-size:60px;">
+                ✅
+            </div>
+
+            <h1 style="margin-bottom:10px;">
+                Order Placed Successfully!
+            </h1>
+
+            <p style="color:#687386; font-size:17px;">
+                Thank you for shopping with SmartCart.
+            </p>
+
+            <div style="
+                background:#f5f8fc;
+                padding:20px;
+                border-radius:12px;
+                margin:25px auto;
+                max-width:450px;
+                text-align:left;">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:12px;">
+                    <span>Subtotal</span>
+                    <strong>₹{{ subtotal }}</strong>
+                </div>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:12px;
+                    color:#20a957;">
+                    <span>Discount</span>
+                    <strong>− ₹{{ discount }}</strong>
+                </div>
+
+                <hr style="
+                    border:none;
+                    border-top:1px solid #ddd;
+                    margin:15px 0;">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    font-size:20px;">
+                    <strong>Total Paid</strong>
+                    <strong>₹{{ final_total }}</strong>
+                </div>
+
+            </div>
+
+            <a href="{{ url_for('dashboard') }}"
+               style="
+               display:inline-block;
+               background:#063b73;
+               color:white;
+               padding:13px 25px;
+               border-radius:9px;
+               text-decoration:none;
+               font-weight:bold;">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    {% elif items %}
+
+        <div style="margin-bottom:25px;">
+            <small style="
+                letter-spacing:2px;
+                font-weight:bold;">
+                SMART CART
+            </small>
+
+            <h1 style="
+                font-size:40px;
+                margin:5px 0;">
+                Checkout
+            </h1>
+
+            <p style="color:#687386;">
+                Review your order before completing your purchase.
+            </p>
+        </div>
+
+
+        <div class="store-layout">
+
+            <!-- ORDER ITEMS -->
+            <section>
+
+                <div class="card">
+
+                    <h2 style="margin-bottom:20px;">
+                        🛍️ Your Order
+                    </h2>
+
+                    {% for item in items %}
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        padding:16px 0;
+                        border-bottom:1px solid #edf0f4;">
+
+                        <div style="
+                            display:flex;
+                            align-items:center;
+                            gap:15px;">
+
+                            <div style="font-size:35px;">
+                                {{ item.emoji }}
+                            </div>
+
+                            <div>
+                                <strong>{{ item.name }}</strong>
+
+                                <p style="
+                                    margin:5px 0 0;
+                                    color:#687386;">
+                                    {{ item.category }} · Qty {{ item.qty }}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <strong>
+                            ₹{{ item.line_total }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+
+            <!-- PAYMENT SUMMARY -->
+            <aside class="card"
+                   style="height:max-content;">
+
+                <h2 style="margin-bottom:20px;">
+                    Order Summary
+                </h2>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:14px;">
+                    <span>Subtotal</span>
+                    <strong>₹{{ subtotal }}</strong>
+                </div>
+
+                {% if discount > 0 %}
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:14px;
+                    color:#20a957;">
+                    <span>Discount (5%)</span>
+                    <strong>− ₹{{ discount }}</strong>
+                </div>
+
+                {% else %}
+
+                <div style="
+                    background:#fff7e6;
+                    color:#946200;
+                    padding:10px;
+                    border-radius:8px;
+                    font-size:14px;
+                    margin-bottom:15px;">
+                    💡 Spend ₹500 or more to get a 5% discount.
+                </div>
+
+                {% endif %}
+
+                <hr style="
+                    border:none;
+                    border-top:1px solid #e5e9ef;
+                    margin:18px 0;">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    font-size:21px;
+                    margin-bottom:20px;">
+                    <strong>Total</strong>
+                    <strong>₹{{ final_total }}</strong>
+                </div>
+
+
+                {% if budget is defined and final_total > budget %}
+
+                <div class="budget-alert budget-danger"
+                     style="margin-bottom:15px;">
+                    ⚠ This order exceeds your shopping budget.
+                </div>
+
+                {% else %}
+
+                <div class="budget-alert budget-safe"
+                     style="margin-bottom:15px;">
+                    ✓ This order is within your budget.
+                </div>
+
+                {% endif %}
+
+
+                <form method="POST">
+
+                    <button type="submit"
+                            style="
+                            width:100%;
+                            border:none;
+                            background:#20a957;
+                            color:white;
+                            padding:15px;
+                            border-radius:9px;
+                            font-size:16px;
+                            font-weight:bold;
+                            cursor:pointer;">
+                        ✓ Place Order
+                    </button>
+
+                </form>
+
+
+                <a href="{{ url_for('cart') }}"
+                   style="
+                   display:block;
+                   text-align:center;
+                   margin-top:12px;
+                   color:#063b73;
+                   text-decoration:none;
+                   font-weight:bold;">
+                    ← Back to Cart
+                </a>
+
+            </aside>
+
+        </div>
+
+    {% else %}
+
+        <div class="card"
+             style="
+             text-align:center;
+             padding:60px;
+             margin-top:30px;">
+
+            <div style="font-size:55px;">
+                🛒
+            </div>
+
+            <h2>
+                Your cart is empty
+            </h2>
+
+            <p style="color:#687386;">
+                Add some products before checking out.
+            </p>
+
+            <a href="{{ url_for('products') }}"
+               style="
+               display:inline-block;
+               background:#063b73;
+               color:white;
+               padding:13px 22px;
+               border-radius:9px;
+               text-decoration:none;
+               font-weight:bold;
+               margin-top:15px;">
+                Find Products
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</main>
+
+</body>
+</html>

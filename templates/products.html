@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products | SmartCart</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="/">🛒 <span>SmartCart</span><small>Intelligent Shopping Assistant</small></a>
+  <nav><a href="/">Dashboard</a><a href="/cart">Cart ({{ cart_count }})</a></nav>
+</header>
+<main class="container">
+  <div class="page-head"><div><span class="eyebrow">PRODUCT CATALOG</span><h1>Find Products</h1><p>Choose products and build your smart cart.</p></div><a class="secondary" href="/cart">View Cart →</a></div>
+  <input id="search" class="search" placeholder="🔎 Search by product name or category..." oninput="filterProducts()">
+  <div class="chips">
+    <button onclick="setCategory('All')">All</button><button onclick="setCategory('Groceries')">Groceries</button>
+    <button onclick="setCategory('Snacks')">Snacks</button><button onclick="setCategory('Personal Care')">Personal Care</button><button onclick="setCategory('Beverages')">Beverages</button><button onclick="setCategory('Dairy')">Dairy</button>
+  </div>
+  <section class="product-grid" id="grid">
+  {% for p in products %}
+    <article class="product-card" data-name="{{ p.name|lower }}" data-category="{{ p.category }}">
+      <div class="product-icon">{{ p.emoji }}</div><span class="pill">{{ p.category }}</span>
+      <h3>{{ p.name }}</h3><p>📍 {{ p.location }}</p><div class="product-bottom"><b>₹{{ p.price }}</b><a class="add-button" href="/add/{{ p.id }}">+ Add</a></div>
+    </article>
+  {% endfor %}
+  </section>
+</main>
+<script>
+let category="All";
+function setCategory(c){category=c;filterProducts();}
+function filterProducts(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".product-card").forEach(card=>{
+   const ok=(category==="All"||card.dataset.category===category) && (card.dataset.name.includes(q)||card.dataset.category.toLowerCase().includes(q));
+   card.style.display=ok?"block":"none";
+ });
+}
+</script>
+</body>
+</html>
